@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
-@RequestMapping("/members")
+@RequestMapping("/member")
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
@@ -43,5 +43,17 @@ public class MemberController {
             return "member/memberForm";
         }
         return "redirect:/";
+    }
+    // 로그인 페이지
+    @GetMapping("/login")
+    public String memberLogin() {
+        return "member/loginForm";
+    }
+
+    // 로그인 실패
+    @GetMapping("/login/fail")
+    public String memberLoginFail(Model model) {
+        model.addAttribute("loginFailMsg", "아이디 또는 비밀번호를 확인해주세요.");
+        return "member/loginForm";
     }
 }
