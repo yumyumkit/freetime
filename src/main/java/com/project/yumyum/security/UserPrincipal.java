@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+/**Security 에서 인증 객체로 사용할 클래스*/
 @Getter
 public class UserPrincipal implements OAuth2User, UserDetails {
     private Long id;

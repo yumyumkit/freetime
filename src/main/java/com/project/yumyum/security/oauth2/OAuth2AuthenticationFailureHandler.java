@@ -1,6 +1,7 @@
 package com.project.yumyum.security.oauth2;
 
 import com.project.yumyum.util.CookieUtils;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
@@ -15,15 +16,16 @@ import java.io.IOException;
 
 import static com.project.yumyum.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
 
-/*
+/**
  * OAuth2 인증 중 오류가 발생하면 Spring Security는 SecurityConfig에서 구성한
  * OAuth2AuthenticationFailureHandler의 onAuthenticationFailure() 메서드를 호출함
- * 쿼리 문자열에 추가된 오류 메시지와 함께 사용자를 프론트엔드 클라이언트로 보냄*/
+ * 쿼리 문자열에 추가된 오류 메시지와 함께 사용자를 프론트엔드 클라이언트로 보냄
+ * ex.네이버 계정의 이메일 = 카카오 계정의 이메일 : 이 핸들러에서 처리함*/
 @Component
+@RequiredArgsConstructor
 public class OAuth2AuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
-    @Autowired
-    HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository;
+    private final HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository;
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {

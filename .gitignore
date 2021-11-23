@@ -33,4 +33,10 @@ build/
 .vscode/
 
 ### 소셜 로그인 관련 개인 정보 ###
-application-oauth.properties
+application-oauth2.yml
+
+### jwt 관련 정보 ###
+application-app.yml
+
+### db 관련 설정 정보 ###
+application-mysql.yml

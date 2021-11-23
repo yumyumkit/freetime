@@ -4,8 +4,10 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import java.lang.annotation.*;
 
-/*
-* 현재 인증된 사용자의 PrincipleId를 컨트롤러에 삽입하는 데 사용할 수 있는 메타 어노테이션*/
+/**SecurityContextHolder.getContext().getAuthentication().getPrincipal() 을 통해 UserPrincipal 을
+ 가져오던 것을 간단하게 처리하기 위해 만들어진 어노테이션
+ 물론 @AuthenticationPrincipal  로 가능 하지만 더 짧고 명확한 명칭을 주기 위해 만든 것 뿐
+*/
 @Target({ElementType.PARAMETER, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented

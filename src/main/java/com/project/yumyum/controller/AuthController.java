@@ -25,9 +25,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 
-/*
+/**
  * 이메일 기반 인증 위한 컨트롤러 - 이메일 및 비밀번호 기반의 로그인 처리 위한 컨트롤러
- * 서버에 이메일로 가입하기 위한 Auth Api*/
+ * 소셜로그인 이외에 서버에 이메일로 가입하기 위한 Auth Api*/
 @RestController
 @RequestMapping("/auth")
 public class AuthController {

@@ -2,7 +2,7 @@ package com.project.yumyum.security.oauth2.user;
 
 import java.util.Map;
 
-/**
+/** 카카오에 요청하여 유저 정보를 응답 받는 클래스
  * {
  *  id=11111111,
  *  connected_at=2021-08-14T14:02:42Z,

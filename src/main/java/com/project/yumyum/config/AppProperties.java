@@ -15,13 +15,13 @@ public class AppProperties {
     private final OAuth2 oauth2 = new OAuth2();
 
     @Getter
-    @Setter
+    @Setter //JWT 토큰의 암호키와 만료기간 설정 시 사용
     public class Auth {
         private String tokenSecret;
         private long tokenExpirationMsec;
     }
 
-    @Getter
+    @Getter //프론트엔드 클라이언트가 /oauth2/authorize 요청에서 지정한 redirectUri
     public class OAuth2 {
         private List<String> authorizedRedirectUris = new ArrayList<>();
 

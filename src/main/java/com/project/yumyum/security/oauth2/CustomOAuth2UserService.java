@@ -1,13 +1,5 @@
 package com.project.yumyum.security.oauth2;
 
-/*
-Spring Security의 DefaultOAuth2UserService를 상속받고 loadUser()메소드 구현
-이 메서드는 OAuth2 공급자로부터 액세스 토큰을 얻은 후에 호출됨
-1. 먼저 OAuth2 제공 업체에서 사용자의 세부정보 가져옴
-2. 동일한 이메일을 사용하는 사용자가 이미 데이터베이스에 있으면 세부 정보를 업데이트하고
-그렇지 않으면 새 사용자 등록함
-*/
-
 
 import com.project.yumyum.exception.OAuth2AuthenticationProcessingException;
 import com.project.yumyum.model.AuthProvider;
@@ -28,8 +20,15 @@ import org.springframework.util.StringUtils;
 
 import java.util.Optional;
 
+/**
+ * Spring OAuth2에서 제공하는 OAuth2User을 가공하여 OAuth2UserInfo로 만들고
+ * OAuth2UserInfo에 Email이 있는지 검사와, A라는 플랫폼으로 가입이 되어있는 데,
+ * B 플랫폼으로 가입 하려는 경우 검사를 진행하며, 이미 존재하는 계정에 경우에는 Update 를 진행하고,
+ * 없는 경우에는 새로 Insert 하며, UserPrincipal 을 리턴한다
+ */
 @Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
+
     @Autowired
     private UserRepository userRepository;
 
@@ -47,15 +46,24 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     }
 
     private OAuth2User processOAuth2User(OAuth2UserRequest oAuth2UserRequest, OAuth2User oAuth2User) {
+
+        final String registrationId = oAuth2UserRequest.getClientRegistration().getRegistrationId();
+
         OAuth2UserInfo oAuth2UserInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(oAuth2UserRequest.getClientRegistration().getRegistrationId(), oAuth2User.getAttributes());
+
         if (StringUtils.isEmpty(oAuth2UserInfo.getEmail())) {
             throw new OAuth2AuthenticationProcessingException("Email not found from OAuth2 provider");
         }
         Optional<User> userOptional = userRepository.findByEmail(oAuth2UserInfo.getEmail());
         User user;
+
+        //이미 존재하는 경우
         if (userOptional.isPresent()) {
             user = userOptional.get();
+
+            //가져온 유저의 공급자명과 넘어온 공급자명이 다른 경우
             if (!user.getProvider().equals(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()))) {
+                //이미 다른 공급자가 존재하기 때문에 가입할 수 없음
                 throw new OAuth2AuthenticationProcessingException("Looks like you're signed up with " +
                         user.getProvider() + " account. Please use your " + user.getProvider() +
                         " account to login.");
@@ -68,18 +76,22 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     }
 
     private User registerNewUser(OAuth2UserRequest oAuth2UserRequest, OAuth2UserInfo oAuth2UserInfo) {
-        User user = new User();
-        user.setProvider(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()));
-        user.setProviderId(oAuth2UserInfo.getId());
-        user.setName(oAuth2UserInfo.getName());
-        user.setEmail(oAuth2UserInfo.getEmail());
-        user.setImageUrl(oAuth2UserInfo.getImageUrl());
+
+        User user = User.socialBuilder()
+                .provider(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()))
+                .providerId(oAuth2UserInfo.getId())
+                .name(oAuth2UserInfo.getName())
+                .email(oAuth2UserInfo.getEmail())
+                .imageUrl(oAuth2UserInfo.getImageUrl())
+                .build();
+
         return userRepository.save(user);
     }
 
     private User updateExistingUser(User existingUser, OAuth2UserInfo oAuth2UserInfo) {
-        existingUser.setName(oAuth2UserInfo.getName());
-        existingUser.setImageUrl(oAuth2UserInfo.getImageUrl());
+        existingUser.updateNameAndImage(oAuth2UserInfo.getName(),
+                oAuth2UserInfo.getImageUrl());
+
         return userRepository.save(existingUser);
     }
 }

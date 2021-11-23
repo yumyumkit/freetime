@@ -1,6 +1,7 @@
 package com.project.yumyum.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
+/**DB의 User 테이블*/
 @Entity
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = "email")
@@ -41,4 +43,28 @@ public class User {
     private AuthProvider provider;
 
     private String providerId;
+
+    @Builder(builderClassName= "social", builderMethodName = "socialBuilder")
+    private User(String name, @Email String email, String imageUrl, @NotNull AuthProvider provider, String providerId) {
+        this.name = name;
+        this.email = email;
+        this.imageUrl = imageUrl;
+        this.provider = provider;
+        this.providerId = providerId;
+    }
+
+    @Builder(builderClassName = "local",builderMethodName = "localBuilder")
+    public User(String name, @Email String email, String imageUrl, String password, @NotNull AuthProvider provider, String providerId) {
+        this.name = name;
+        this.email = email;
+        this.imageUrl = imageUrl;
+        this.password = password;
+        this.provider = provider;
+        this.providerId = providerId;
+    }
+
+    public void updateNameAndImage(String name, String imageUrl) {
+        this.name = name;
+        this.imageUrl = imageUrl;
+    }
 }

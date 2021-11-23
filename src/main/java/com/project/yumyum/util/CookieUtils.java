@@ -45,6 +45,8 @@ public class CookieUtils {
         }
     }
 
+    /**OAuth2AuthorizationRequest를 base64로 인코딩해서 각 플랫폼 url에 보낼 때 사용
+    * */
     public static String serialize(Object object) {
         return Base64.getUrlEncoder()
                 .encodeToString(SerializationUtils.serialize(object));

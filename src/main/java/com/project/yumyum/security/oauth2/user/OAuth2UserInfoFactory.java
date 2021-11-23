@@ -5,17 +5,22 @@ import com.project.yumyum.model.AuthProvider;
 
 import java.util.Map;
 
-//모든 소셜 로그인 정보 관리하는 클래스
+/**모든 소셜 로그인 정보 관리하는 클래스
+ *각 플랫폼 클래스를 생성하기 위한 Factory 패턴을 사용한 클래스
+ */
 public class OAuth2UserInfoFactory {
+
     public static OAuth2UserInfo getOAuth2UserInfo(String registrationId, Map<String, Object> attributes) {
-        if(registrationId.equalsIgnoreCase(AuthProvider.google.toString())) {
-            return new GoogleOAuth2UserInfo(attributes);
-        } else if (registrationId.equalsIgnoreCase(AuthProvider.facebook.toString())) {
-            return new FacebookOAuth2UserInfo(attributes);
-        } else if (registrationId.equalsIgnoreCase(AuthProvider.github.toString())) {
-            return new GithubOAuth2UserInfo(attributes);
-        } else {
-            throw new OAuth2AuthenticationProcessingException("Sorry! Login with " + registrationId + " is not supported yet.");
+        System.err.println(attributes);
+        switch (AuthProvider.valueOf(registrationId.toLowerCase())) {
+            case naver:
+                return new NaverOAuth2UserInfo(attributes);
+            case kakao:
+                return new KakaoOAuth2UserInfo(attributes);
+            case google:
+                return new GoogleOAuth2UserInfo(attributes);
+            default:
+                throw new OAuth2AuthenticationProcessingException("Sorry! Login with " + registrationId + " is not supported yet.");
         }
     }
 }

@@ -23,9 +23,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-//스프링 부트에서 보안 구현의 핵심. OAuth2 소셜 로그인과 이메일 및 비밀번호 기반
-//로그인에 대한 구성이 포함됨
-//서로 다른 구성 요소를 연결하여 응용프로그램 전체의 보안 정책 결정
+/**스프링 부트에서 보안 구현의 핵심. OAuth2 소셜 로그인과 이메일 및 비밀번호 기반
+ *로그인에 대한 구성이 포함됨
+ *서로 다른 구성 요소를 연결하여 응용프로그램 전체의 보안 정책 결정
+ 백엔드의 전반적인 보안 설정 */
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -84,6 +85,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf()
                 .disable()
+                .headers().frameOptions().disable()
+                .and()
                 .formLogin()
                 .disable()
                 .httpBasic()

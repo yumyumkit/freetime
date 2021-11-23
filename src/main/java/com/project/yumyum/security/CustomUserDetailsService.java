@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+/**TokenFilter 에서 DB 로 인증을 받기 위해 만들어진 Service 클래스*/
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 

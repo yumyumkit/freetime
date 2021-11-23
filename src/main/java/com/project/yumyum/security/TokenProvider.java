@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
-//Json 웹 토큰을 생성하고 인증(Verify)하는 코드가 포함되어있음
+/**Json 웹 토큰을 생성하고 인증(Verify)하는 코드가 포함되어있음*/
 @Service
 @Slf4j
 @AllArgsConstructor

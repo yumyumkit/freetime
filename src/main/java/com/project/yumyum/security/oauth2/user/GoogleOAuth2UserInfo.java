@@ -2,7 +2,7 @@ package com.project.yumyum.security.oauth2.user;
 
 import java.util.Map;
 
-//구글 유저 정보 가져옴
+/**구글에 요청하여 유저 정보를 응답 받는 클래스*/
 public class GoogleOAuth2UserInfo extends OAuth2UserInfo {
     public GoogleOAuth2UserInfo(Map<String, Object> attributes) {
         super(attributes);

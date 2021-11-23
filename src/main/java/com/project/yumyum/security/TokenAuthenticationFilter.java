@@ -7,7 +7,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -18,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/*
+/**
  * 이 클래스는 request에서 JWT인증 토큰을 읽어 인증(verify)하고, 토큰이 유효한 경우
  * Spring Security의 SecurityContext를 설정하는 데 사용됨*/
 public class TokenAuthenticationFilter extends OncePerRequestFilter {

@@ -4,8 +4,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-//프론트엔드 클라이언트가 다른 출처의 API에 엑세스할 수 있도록 CORS를 활성화 - 클라이언트와 백단의 포트가 달라서 CORS 충돌 발생
-//다음 구성에서 모든 origin을 활성화함
+/**프론트엔드 클라이언트가 다른 출처의 API에 엑세스할 수 있도록 CORS를 활성화 - 클라이언트와 백단의 포트가 달라서 CORS 충돌 발생
+ *다음 구성에서 모든 origin을 활성화함
+ *cors를 설정할 때 사용 */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
