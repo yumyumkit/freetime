@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### 소셜 로그인 관련 개인 정보 ###
+application-oauth.properties
