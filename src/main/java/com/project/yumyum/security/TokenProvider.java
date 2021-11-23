@@ -4,8 +4,6 @@ import com.project.yumyum.config.AppProperties;
 import io.jsonwebtoken.*;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class TokenProvider {
 
-
-    private AppProperties appProperties;
+    private final AppProperties appProperties;
 
     public String createToken(Authentication authentication) {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();

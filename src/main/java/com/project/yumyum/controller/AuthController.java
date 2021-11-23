@@ -46,6 +46,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginRequest.getEmail(),
@@ -61,18 +62,27 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
-        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-            throw new BadRequestException("이미 사용 중인 이메일입니다.");
+        if(userRepository.existsByEmail(signUpRequest.getEmail())) {
+            throw new BadRequestException("Email address already in use.");
         }
 
-        //새 유저 계정 만들기
-        User user = new User();
-        user.setName(signUpRequest.getName());
-        user.setEmail(signUpRequest.getEmail());
-        user.setPassword(signUpRequest.getPassword());
-        user.setProvider(AuthProvider.local);
+        // Creating user's account
 
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        //1) 이 방법 안되면 User 클래스에 setter 열어주고 2번 코드로 구현
+        User user = User.localBuilder()
+                .name(signUpRequest.getName())
+                .email(signUpRequest.getEmail())
+                .password(passwordEncoder.encode(signUpRequest.getPassword()))
+                .provider(AuthProvider.local)
+                .build();
+        //2)
+//        User user = new User();
+//        user.setName(signUpRequest.getName());
+//        user.setEmail(signUpRequest.getEmail());
+//        user.setPassword(signUpRequest.getPassword());
+//        user.setProvider(AuthProvider.local);
+//
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         User result = userRepository.save(user);
 
@@ -81,6 +91,7 @@ public class AuthController {
                 .buildAndExpand(result.getId()).toUri();
 
         return ResponseEntity.created(location)
-                .body(new ApiResponse(true, "회원가입이 성공적으로 이루어졌습니다."));
+                .body(new ApiResponse(true, "User registered successfully@"));
     }
+
 }
