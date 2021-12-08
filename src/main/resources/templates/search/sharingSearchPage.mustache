@@ -1,0 +1,36 @@
+<a href="/" role="button" class="btn btn-secondary">Home</a>
+<table class="table">
+    <thead class="thead-light">
+    <tr>
+        <th scope="col">게시글 번호</th>
+        <th scope="col">제목</th>
+        <th scope="col">작성자</th>
+        <th scope="col">작성시간</th>
+    </tr>
+
+    </thead>
+    {{#sharingSearchList}}
+        <tbody>
+        <tr>
+            <th scope="row">{{id}}</th>
+            <td><a href="/posts/{{id}}">{{title}}</a></td>
+            <td>{{author}}</td>
+            <td>{{modifiedDate}}</td>
+        </tr>
+        </tbody>
+    {{/sharingSearchList}}
+</table>
+
+<ul class="pagination justify-content-center">
+    <li class="page-item"><a class="page-link" href="?page={{previous}}">Previous</a></li>
+    {{#check}}
+        <li class="page-item"><a class="page-link" href="?page={{next}}">Next</a></li>
+    {{/check}}
+    {{^check}}
+        <li class="page-item disabled"><a class="page-link" href="?page={{next}}">Next</a></li>
+    {{/check}}
+</ul>
+
+{{>search/postsSearchForm}}
+
+{{>layout/postsFooter}}

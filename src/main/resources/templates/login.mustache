@@ -1,0 +1,43 @@
+{{>layout/header}}
+
+  <!-- login section -->
+
+<link href="/js/app/css/login_style.css" rel="stylesheet"/>
+  <section class="login_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="detail-box" style="color: black" id="detail-box-center" >
+            <h3>
+              취미를 만들고 싶은 당신을 위해
+            </h3>
+            <p>
+              "취미" 와 "친구" 가 함께한다
+            </p>
+            <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">
+              <img src="/js/app/images/free-icon-google.png" width="30px" height="25px"/>
+                구글로 로그인
+            </a>
+            <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">
+              <img src="/js/app/images/naver.png" width="30px" height="25px" />
+                네이버로 로그인
+            </a>
+              <a href="/oauth2/authorization/kakao" class="btn btn-warning active" role="button">
+                  <img src="" width="30px" height="25px" />
+                  카카오로 로그인
+              </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end login section -->
+
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+
+</body>
+
+{{>layout/footer}}
