@@ -21,6 +21,7 @@
 
 ### Database 생성
 ```MySQL
+# root 
 create database community default character set utf8;
 show databases;
 create user 'comm'@'%' identified by 'comm';
