@@ -1,23 +1,24 @@
 {{>layout/headernon}}
-<h1>게시글 조회</h1>
+<h1 style="font-weight:bold; text-align:center">{{party.title}}</h1>
 <div class="col-md-12">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <form>
+<!--            <div class="form-group">-->
+<!--                <label for="title">글 번호</label>-->
+<!--                <input type="text" class="form-control" id="id" value="" readonly>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label for="title">제목</label>-->
+<!--                <input type="text" class="form-control" id="title" value="" readonly>-->
+<!--            </div>-->
             <div class="form-group">
-                <label for="title">글 번호</label>
-                <input type="text" class="form-control" id="id" value="{{party.id}}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="title">제목</label>
-                <input type="text" class="form-control" id="title" value="{{party.title}}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="author"> 작성자 </label>
-                <input type="text" class="form-control" id="author" value="{{party.author}}" readonly>
+<!--                <label for="author"> 작성자 </label>-->
+                <span>작성자 | {{party.author}}</span>
+<!--                <input type="text" class="form-control" id="author" value="" readonly>-->
             </div>
             <div class="form-group">
                 <label for="content"> 내용 </label>
-                <textarea class="form-control" id="content" readonly>{{party.content}}</textarea>
+                <textarea rows="10" cols="50" class="form-control" id="content" readonly>{{party.content}}</textarea>
             </div>
         </form>
         <a href="/party" role="button" class="btn btn-secondary">목록</a>

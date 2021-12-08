@@ -4,13 +4,16 @@
     <facet type="web" name="Web">
       <configuration>
         <webroots />
+        <sourceRoots />
       </configuration>
     </facet>
     <facet type="jpa" name="JPA">
       <configuration>
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
-        <datasource-mapping />
+        <datasource-mapping>
+          <factory-entry name="entityManagerFactory" />
+        </datasource-mapping>
         <naming-strategy-map />
       </configuration>
     </facet>
@@ -33,7 +36,6 @@
     <orderEntry type="library" name="Gradle: com.h2database:h2:1.4.199" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-mustache:2.1.7.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-oauth2-client:2.1.7.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework.session:spring-session-jdbc:2.1.8.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: mysql:mysql-connector-java:8.0.17" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-json:2.1.7.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter:2.1.7.RELEASE" level="project" />
@@ -53,9 +55,6 @@
     <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-oauth2-jose:5.1.6.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-config:5.1.6.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-core:5.1.6.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework.session:spring-session-core:2.1.8.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework:spring-context:5.1.9.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework:spring-jdbc:5.1.9.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.9" level="project" />
     <orderEntry type="library" name="Gradle: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.9" level="project" />
     <orderEntry type="library" name="Gradle: com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.9" level="project" />
@@ -72,10 +71,12 @@
     <orderEntry type="library" name="Gradle: javax.validation:validation-api:2.0.1.Final" level="project" />
     <orderEntry type="library" name="Gradle: org.jboss.logging:jboss-logging:3.3.2.Final" level="project" />
     <orderEntry type="library" name="Gradle: com.fasterxml:classmate:1.4.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-context:5.1.9.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-aop:5.1.9.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-beans:5.1.9.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-expression:5.1.9.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.aspectj:aspectjweaver:1.9.4" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-jdbc:5.1.9.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: com.zaxxer:HikariCP:3.2.0" level="project" />
     <orderEntry type="library" name="Gradle: javax.activation:javax.activation-api:1.2.0" level="project" />
     <orderEntry type="library" name="Gradle: org.hibernate.common:hibernate-commons-annotations:5.0.4.Final" level="project" />
@@ -93,12 +94,12 @@
     <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-web:5.1.6.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: com.nimbusds:oauth2-oidc-sdk:6.0" level="project" />
     <orderEntry type="library" name="Gradle: com.nimbusds:nimbus-jose-jwt:6.0.2" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework:spring-jcl:5.1.9.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.9.9" level="project" />
     <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.9.0" level="project" />
     <orderEntry type="library" name="Gradle: ch.qos.logback:logback-classic:1.2.3" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.logging.log4j:log4j-to-slf4j:2.11.2" level="project" />
     <orderEntry type="library" name="Gradle: org.slf4j:jul-to-slf4j:1.7.26" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-jcl:5.1.9.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: com.sun.mail:javax.mail:1.6.2" level="project" />
     <orderEntry type="library" name="Gradle: com.github.stephenc.jcip:jcip-annotations:1.0-1" level="project" />
     <orderEntry type="library" name="Gradle: net.minidev:json-smart:2.3" level="project" />

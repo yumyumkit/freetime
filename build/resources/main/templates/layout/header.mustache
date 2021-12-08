@@ -55,16 +55,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/posts"> sharing </a>
                         </li>
-                        <!-- <li class="nav-item">
-                          <a class="nav-link" href="event.html"> Events </a>
-                        </li> -->
-                        <!-- <li class="nav-item">
-                          <a class="nav-link" href="contact.html">Contact us</a>
-                        </li> -->
                         <li class="nav-item">
                             {{#userName}}
-                               <span id="user"><img src="{{userImage}}" style="border-radius: 50px">{{userName}}</span>
-                                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+                               <span id="user"><img src="{{userImage}}" style="border-radius: 50px; width:60px; height:60px; margin-top: 20px"><span style="margin-top: 30px">{{userName}}</span></span>
+                                <a href="/logout" style="margin-top: 30px" class="btn btn-info active" role="button">Logout</a>
                             {{/userName}}
                             {{^userName}}
                                 <a class="nav-link" href="/login">Login</a>
